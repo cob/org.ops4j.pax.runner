@@ -10,10 +10,12 @@ set -e # stop on errors
 # chkconfig:   2345 80 80
 # description: The PAX_RUNNER_APPNAME application
 #
-# NOTE: the 2 comments above and the following 4 variable values will propably
+# NOTE: the 2 comments above and the following 4 variable values will probably
 #       need customization when packaging the distribution. The generated values
 #       are meant for local testing
 #
+
+app_user=$USER
 app_name=PAX_RUNNER_APPNAME
 app_root=/opt/$app_name
 pid_file=/var/run/${app_name}.pid
@@ -38,9 +40,19 @@ set -e # reenable
 function startContainer() {
   if [ -z ${pid_isrunning} ]; then
     echo "starting ${app_name}"
+
+    if [[ "${app_user}" == "root" ]]; then
+        echo "running as root is not allowed, please define app_user in /etc/$app_name/$app_name.rc"
+        exit 1
+    fi
+
+    touch ${log_file}
+    touch ${pid_file}
+    chown ${app_user} ${log_file}
+    chown ${app_user} ${pid_file}
+
     pushd ${app_root} > /dev/null
 PAX_RUNNER_STARTCODE
-    echo $! > ${pid_file}
     popd > /dev/null
   else
     echo "${app_name} already running with pid ${pid}"

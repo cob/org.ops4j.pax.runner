@@ -102,13 +102,13 @@ public class InitDScriptRunner implements JavaRunner {
 			        StringBuilder startCommand = new StringBuilder();
 		            for (String part : commandOptions.toArray()) {
 		                if (startCommand.length() == 0) {
-                            startCommand.append("java ");
+                            startCommand.append("su -c \"java $PAX_INITD_ARGS ");
 		                } else {
                             startCommand.append(" \\\n         ");
 		                }
 		                startCommand.append(part);
 		            }
-				    line = "    " + startCommand + " >${log_file} 2>&1 &";
+				    line = "    " + startCommand + " >${log_file} 2>&1 & echo \\$! > ${pid_file}\"";
 				}
                 // TODO add env vars properly.
                 
