@@ -114,6 +114,8 @@ public class InitDScriptRunner implements JavaRunner {
                 
 				writer.write(line + "\n");
 			}
+
+			scriptFile.setExecutable(true, true);
 		} catch (Exception e) {
 		    throw new PlatformException("Error creating init.d script: " + e.getMessage(), e);
 		}
