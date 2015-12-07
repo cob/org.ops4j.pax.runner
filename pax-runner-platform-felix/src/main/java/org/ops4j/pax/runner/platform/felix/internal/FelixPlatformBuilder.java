@@ -173,7 +173,12 @@ public abstract class FelixPlatformBuilder
             writer.append( "#############################" );
             writer.append( " System properties" );
             writer.append( "#############################" );
-            appendProperties( writer, context.getProperties() );
+            Properties properties = context.getProperties();
+            if (hasCobNoSystem(properties)) {
+                writer.append(" cob.felix.nosystem property present, skipping system properties");
+            } else {
+                appendProperties(writer, properties);
+            }
 
             writer.write();
         }
@@ -198,7 +203,11 @@ public abstract class FelixPlatformBuilder
         }
 
     }
-    
+
+    private boolean hasCobNoSystem(Properties properties) {
+        return properties!= null && "true".equalsIgnoreCase(properties.getProperty("cob.felix.nosystem"));
+    }
+
     /**
      * Writes framework storage settings to configuration file
      *
@@ -333,7 +342,7 @@ public abstract class FelixPlatformBuilder
         );
         // TODO http://team.ops4j.org/browse/PAXSCANNER-23?focusedCommentId=18236&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-18236
         final Properties frameworkProperties = context.getProperties();
-        if( frameworkProperties != null )
+        if( frameworkProperties != null && !hasCobNoSystem(frameworkProperties))
         {
             final Enumeration<?> enumeration = frameworkProperties.propertyNames();
             while( enumeration.hasMoreElements() )
