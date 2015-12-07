@@ -18,6 +18,11 @@ app_name=PAX_RUNNER_APPNAME
 app_root=PAX_RUNNER_APPROOT
 pid_file=${app_root}/${app_name}.pid
 log_file=${app_root}/${app_name}.log
+
+if [[ -f /etc/$app_name/$app_name.rc ]]; then
+    . /etc/$app_name/$app_name.rc
+fi
+
 #
 # ... here we go ...
 #
