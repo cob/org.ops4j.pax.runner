@@ -49,8 +49,16 @@ PAX_RUNNER_STARTCODE
 #
 function stopContainer() {
   if [ ! -z ${pid_isrunning} ]; then
-    echo "stopping ${app_name} with pid ${pid}"
-    kill `cat ${pid_file}`
+    echo -n "stopping ${app_name} with pid ${pid}"
+    kill $pid
+
+    while kill -0 $pid 2>/dev/null
+    do
+        echo -n "."
+        sleep 1
+    done
+    echo ""
+
   else
     echo "${app_name} not running"
   fi
