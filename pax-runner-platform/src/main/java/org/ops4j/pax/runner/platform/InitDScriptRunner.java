@@ -108,7 +108,7 @@ public class InitDScriptRunner implements JavaRunner {
 		                }
 		                startCommand.append(part);
 		            }
-				    line = "    " + startCommand + " >${log_file} 2>&1 & echo \\$! > ${pid_file}\"";
+				    line = "    " + startCommand + " >${log_file} 2>&1 & echo \\$! > ${pid_file}\" ${app_user}";
 				}
                 // TODO add env vars properly.
                 
