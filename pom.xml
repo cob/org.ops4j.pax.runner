@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -11,7 +10,7 @@
 
     <groupId>org.ops4j.pax</groupId>
     <artifactId>runner</artifactId>
-    <version>1.8.7-COB-2</version>
+    <version>1.9.0</version>
     <packaging>pom</packaging>
 
     <name>OPS4J Pax Runner - Root</name>
@@ -29,10 +28,10 @@
 
     <properties>
         <release-paxrunner-altGitURL>scm:git:git@github.com:ops4j/org.ops4j.pax.runner.git</release-paxrunner-altGitURL>
-        <dependency.aether.version>1.0.0.v20140518</dependency.aether.version>
+        <dependency.aether.version>1.0.2.v20150114</dependency.aether.version>
         <dependency.base.version>1.5.0</dependency.base.version>
         <dependency.swissbox.version>1.8.0</dependency.swissbox.version>
-        <dependency.url.version>2.3.0</dependency.url.version>
+        <dependency.url.version>2.4.5</dependency.url.version>
         <dependency.scanner.version>1.1.0</dependency.scanner.version>
     </properties>
 
@@ -40,7 +39,7 @@
         <connection>scm:git:git@github.com:ops4j/org.ops4j.pax.runner.git</connection>
         <developerConnection>${release-paxrunner-altGitURL}</developerConnection>
         <url>http://github.com/ops4j/org.ops4j.pax.runner/tree/master</url>
-        <tag>HEAD</tag>
+        <tag>runner-1.9.0</tag>
     </scm>
 
     <developers>
