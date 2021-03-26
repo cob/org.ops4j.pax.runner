@@ -245,7 +245,12 @@ public class ConfigurationImpl
             String javaVersion = m_propertyResolver.get( ServiceConstants.CONFIG_EXECUTION_ENV );
             if( javaVersion == null )
             {
-                javaVersion = "J2SE-" + System.getProperty( "java.version" ).substring( 0, 3 );
+                String property = System.getProperty("java.version");
+                if(property.startsWith("1.")){
+                    javaVersion = "J2SE-" + property.substring( 0, 3 );
+                } else {
+                    javaVersion = "J2SE-" + property.substring(0, property.indexOf('.'));
+                }
             }
             return set( ServiceConstants.CONFIG_EXECUTION_ENV, javaVersion );
         }

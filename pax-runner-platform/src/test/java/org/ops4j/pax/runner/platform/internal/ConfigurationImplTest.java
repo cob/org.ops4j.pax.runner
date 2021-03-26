@@ -141,7 +141,13 @@ public class ConfigurationImplTest
     {
         PropertyResolver propertyResolver = createMock( PropertyResolver.class );
         expect( propertyResolver.get( "org.ops4j.pax.runner.platform.ee" ) ).andReturn( null );
-        String javaVersion = System.getProperty( "java.version" ).substring( 0, 3 );
+        String property = System.getProperty("java.version");
+        String javaVersion;
+        if(property.startsWith("1.")) {
+            javaVersion = property.substring( 0, 3 );
+        } else {
+            javaVersion = property.substring(0, property.indexOf('.'));
+        }
 
         replay( propertyResolver );
         Configuration config = new ConfigurationImpl( propertyResolver );
